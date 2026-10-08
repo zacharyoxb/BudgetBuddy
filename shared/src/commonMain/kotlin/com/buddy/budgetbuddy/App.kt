@@ -61,7 +61,7 @@ fun TitleBar(title: String) {
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.primaryContainer)
             .statusBarsPadding()
-            .padding(bottom = 20.dp),
+            .padding(vertical = 20.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
@@ -77,7 +77,6 @@ fun TitleBar(title: String) {
 @Composable
 fun Overview() {
     SectionHeader("Overview")
-    // placeholder — replace with your content
 }
 
 @Composable
