@@ -14,8 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import compose.FinanceTable
 import compose.SectionHeader
 import compose.TitleBar
+import data.FinanceEvent
+import kotlinx.datetime.LocalDate
 import theme.AppTheme
 
 @Composable
@@ -61,6 +64,31 @@ fun Overview() {
 @Composable
 fun Income() {
     SectionHeader("Income")
+
+    // temp
+    val values = listOf(
+        FinanceEvent(
+            id = 1L,
+            label = "Salary",
+            date = LocalDate(2026, 3, 1),
+            expected = 240_000,
+        ),
+        FinanceEvent(
+            id = 2L,
+            label = "Interest",
+            date = LocalDate(2026, 3, 15),
+            expected = 8_500,
+            actual = 9_240,
+        ),
+        FinanceEvent(
+            id = 3L,
+            label = "Freelance",
+            date = LocalDate(2026, 3, 20),
+            expected = 40_000,
+            actual = null,
+        ),
+    )
+    FinanceTable(values)
 }
 
 @Composable

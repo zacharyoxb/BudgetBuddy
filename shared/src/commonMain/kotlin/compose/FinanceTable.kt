@@ -2,9 +2,11 @@ package compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +31,9 @@ fun FinanceTable(events: List<FinanceEvent>) {
         items(events.size) {
             FinanceRow(events[it])
         }
+        item {
+            TableFooter()
+        }
     }
 }
 
@@ -37,13 +42,12 @@ private fun TableHeader() {
     Row(
         Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
-        Text("Date",   Modifier.weight(1.5f), style = MaterialTheme.typography.labelMedium)
-        Text("Label",  Modifier.weight(2f), style = MaterialTheme.typography.labelMedium)
+        Text("Label",  Modifier.weight(1.5f), style = MaterialTheme.typography.labelMedium)
         Text("Expected", Modifier.weight(1f), style = MaterialTheme.typography.labelMedium)
-        Text("Actual", Modifier.weight(1f), style = MaterialTheme.typography.labelMedium)
+        Text("Actual", Modifier.weight(1f), style = MaterialTheme.typography.labelMedium, textAlign = TextAlign.End)
     }
 }
 
@@ -52,16 +56,17 @@ private fun FinanceRow(event: FinanceEvent) {
     Row(
         Modifier
             .fillMaxWidth()
-            .clickable { /* edit */ }
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .clickable { /* edit */ },
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(event.date.toString(), Modifier.weight(2f))
-        Text(event.label, Modifier.weight(1.5f))
-        Text(formatAmount(event.expected), Modifier.weight(1f))
+        Text(event.label, Modifier.weight(1.5f), style = MaterialTheme.typography.bodyMedium)
+        Text(formatAmount(event.expected), Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
         Text(
             formatAmount(event.actual ?: event.expected),
-            Modifier.weight(1f),
+            Modifier
+                .weight(1f)
+                .padding(5.dp),
+            style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.End,
             color = if (event.actual == null) {
                 Color(AMBER)
@@ -71,4 +76,16 @@ private fun FinanceRow(event: FinanceEvent) {
         )
     }
     HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+}
+
+
+@Composable
+private fun TableFooter() {
+    Row(
+        Modifier
+            .fillMaxWidth(0.25f)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+    ) {
+        Text("Add Entry", style = MaterialTheme.typography.labelMedium)
+    }
 }
