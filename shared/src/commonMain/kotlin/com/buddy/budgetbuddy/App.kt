@@ -65,7 +65,6 @@ fun Overview() {
 fun Income() {
     SectionHeader("Income")
 
-    // temp
     val values = listOf(
         FinanceEvent(
             id = 1L,
@@ -94,5 +93,29 @@ fun Income() {
 @Composable
 fun Expenses() {
     SectionHeader("Expenses")
+
+    val values = listOf(
+        FinanceEvent(
+            id = 1L,
+            label = "Bills",
+            date = LocalDate(2026, 3, 1),
+            expected = 24_000,
+        ),
+        FinanceEvent(
+            id = 2L,
+            label = "Food",
+            date = LocalDate(2026, 3, 15),
+            expected = 80_500,
+            actual = 80_240,
+        ),
+        FinanceEvent(
+            id = 3L,
+            label = "Netflix",
+            date = LocalDate(2026, 3, 20),
+            expected = 12_00,
+            actual = null,
+        ),
+    )
+    FinanceTable(values)
 }
 
