@@ -21,7 +21,7 @@ fun TitleBar(title: String) {
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.primaryContainer)
             .statusBarsPadding()
-            .padding(vertical = 20.dp),
+            .padding(vertical = 5.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
