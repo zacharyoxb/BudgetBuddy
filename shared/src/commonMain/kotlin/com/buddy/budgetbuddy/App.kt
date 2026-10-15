@@ -2,14 +2,11 @@ package com.buddy.budgetbuddy
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,48 +20,7 @@ import theme.AppTheme
 @Composable
 @Preview
 fun App() {
-    AppTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            TitleBar("Monthly Budget")
-
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp),
-                contentAlignment = Alignment.TopCenter,
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .widthIn(max = 600.dp)
-                        .padding(vertical = 24.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    Overview()
-                    Income()
-                    Expenses()
-                }
-            }
-        }
-    }
-}
-
-
-
-@Composable
-fun Overview() {
-    SectionHeader("Overview")
-}
-
-@Composable
-fun Income() {
-    SectionHeader("Income")
-
-    val values = listOf(
+    val incomeDummy = listOf(
         FinanceEvent(
             id = 1L,
             label = "Salary",
@@ -85,15 +41,23 @@ fun Income() {
             expected = 40_000,
             actual = null,
         ),
+        FinanceEvent(
+            id = 4L,
+            label = "Dad",
+            date = LocalDate(2026, 3, 20),
+            expected = 40_000,
+            actual = null,
+        ),
+        FinanceEvent(
+            id = 5L,
+            label = "Income",
+            date = LocalDate(2026, 3, 20),
+            expected = 40_000,
+            actual = null,
+        )
     )
-    FinanceTable(values)
-}
 
-@Composable
-fun Expenses() {
-    SectionHeader("Expenses")
-
-    val values = listOf(
+    val expensesDummy = listOf(
         FinanceEvent(
             id = 1L,
             label = "Bills",
@@ -115,6 +79,26 @@ fun Expenses() {
             actual = null,
         ),
     )
-    FinanceTable(values)
+
+    AppTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+        ) {
+            TitleBar("Monthly Budget")
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                SectionHeader("Overview")
+                FinanceTable("Income", incomeDummy)
+                FinanceTable("Expenses", expensesDummy)
+            }
+        }
+    }
 }
+
 

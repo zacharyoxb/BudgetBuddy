@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 
 private val LightColorScheme = lightColorScheme(
     background = GreenBackgroundLight,
+    onBackground = GreenOnBackgroundLight,
     primary = GreenPrimaryLight,
     onPrimary = GreenOnPrimaryLight,
     primaryContainer = GreenPrimaryContainerLight,
@@ -16,10 +17,13 @@ private val LightColorScheme = lightColorScheme(
     onSecondaryContainer = GreenOnSecondaryContainerLight,
     tertiaryContainer = GreenTertiaryContainerLight,
     onTertiaryContainer = GreenOnTertiaryContainerLight,
+    outline = GreenOutlineLight,
+    outlineVariant = GreenOutlineVariantLight,
 )
 
 private val DarkColorScheme = darkColorScheme(
     background = GreenBackgroundDark,
+    onBackground = GreenOnBackgroundDark,
     primary = GreenPrimaryDark,
     onPrimary = GreenOnPrimaryDark,
     primaryContainer = GreenPrimaryContainerDark,
@@ -28,6 +32,8 @@ private val DarkColorScheme = darkColorScheme(
     onSecondaryContainer = GreenOnSecondaryContainerDark,
     tertiaryContainer = GreenTertiaryContainerDark,
     onTertiaryContainer = GreenOnTertiaryContainerDark,
+    outline = GreenOutlineDark,
+    outlineVariant = GreenOutlineVariantDark,
 )
 
 @Composable
